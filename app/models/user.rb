@@ -1,7 +1,5 @@
 class User < ApplicationRecord
   has_many :documents
 
-  validates :address, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :address, :first_name, :last_name, :zip_code, :city, :state, presence: true
 end
