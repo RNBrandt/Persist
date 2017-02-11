@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-    def create
+  def create
     @client = Client.new(client_params)
   end
 
