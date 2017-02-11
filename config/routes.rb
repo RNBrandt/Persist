@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :documents
   end
+
+  resources :clients do
+    resources :documents
+  end
 end
