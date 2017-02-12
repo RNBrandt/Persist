@@ -39,7 +39,7 @@ module DocusignHelper
         "clientUserId": @user_id,
         "email": @user_email,
         "recipientId": @user_id,
-        "returnUrl": "http://httpbin.org/get",
+        "returnUrl": "http://localhost:3000/success",
         "username": @user_name
     }
   end
