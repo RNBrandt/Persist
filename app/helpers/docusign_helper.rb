@@ -3,10 +3,7 @@ module DocusignHelper
   require 'net/http'
 
   def docusign_post_requests(user, document)
-    p "user ******* #{user}"
-    p "user email *******#{user.email}"
     response = envelope_request(user, document)
-    p "*********first response #{response}**************"
     envelope_id = response.parsed_response["envelopeId"]
     response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
     p response

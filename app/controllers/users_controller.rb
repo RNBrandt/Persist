@@ -15,10 +15,10 @@ helper_method :sign
     @documents = Document.all
   end
 
-  def sign(user_id, document_id)
-    @document = Document.find(document_id)
-    @user = User.find(user_id)
-    docusign_post_requests(@user, @document)
+  def sign
+    @document = Document.find(params[:document])
+    @user = User.find(params[:user])
+    redirect_to docusign_post_requests(@user, @document)
   end
 
   private

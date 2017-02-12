@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :documents
+    match 'sign', :on => :collection, :via => [:get]
   end
 
   resources :clients do
