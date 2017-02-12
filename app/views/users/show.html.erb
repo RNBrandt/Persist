@@ -1,12 +1,26 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 
+<div class="registration">
+<h3>Current Voter Registration</h3>
 <p><%= @user.address %><br />
 <%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></p>
+</div>
 
-<h2>Divisions</h2>
+<h3 class="mt-2">Signed Documents</h3>
+<% if !@documents %>
+  <em>You haven't signed any documents!</em>
+<% end %>
+<!-- list -->
 
-<!-- LOGIC -->
+<h3 class="mt-2">Divisions</h3>
+<p>You are eligible to sign petitions in these jurisdictions:</p>
+<!-- cards -->
+<div class="row">
 <% divisions = @user.civic_json['divisions'] %>
 <% divisions.each do |key, value| %>
-  <div class="division"> <%= value['name'] %></div>
+  <div class="division col-md-3">
+  <p class="division-name align-middle"><a href="#"><%= value['name'] %></a></p>
+  </div>
 <% end %>
+</div>
+

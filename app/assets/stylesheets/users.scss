@@ -4,6 +4,35 @@
 
 .division {
   background-color: AliceBlue;
-  padding: 10px;
+  padding: 20px 10px;
   margin: 10px;
+  text-align: center;
+}
+
+.division-name {
+  font-family: 'Sanchez', serif;
+  font-size: 1.2em;
+  display: inline-block
+}
+
+p.division-name:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 10px solid #A6F4DB;
+  transition: 0.4s;
+}
+
+p.division-name:hover:after {
+  width: 100%;
+}
+
+p.division-name > a {
+  color: #292b2c;
+}
+
+p.division-name > a:hover {
+  text-decoration: none;
 }
