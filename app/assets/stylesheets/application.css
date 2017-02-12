@@ -34,3 +34,7 @@ h1, h2, h3, h4, h5, .btn-submit {
 .btn-submit:hover {
   background-color: #A6F4DB; 
 }
+
+.landing {
+  background: white;
+}
