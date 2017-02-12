@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :clients do
     resources :documents
   end
+
+  root 'pages#index'
 end
