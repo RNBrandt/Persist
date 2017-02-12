@@ -7,9 +7,16 @@
 </div>
 
 <h3 class="mt-2">Signed Documents</h3>
-<% if !@documents %>
+<% if @documents.empty? %>
   <em>You haven't signed any documents!</em>
+<% else %>
+  <% @documents.each do |document| %>
+    <div class="signed-doc">
+      <%= document.name %>
+    </div>
+  <% end %>
 <% end %>
+
 <!-- list -->
 
 <h3 class="mt-2">Divisions</h3>
