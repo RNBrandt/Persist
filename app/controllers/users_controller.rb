@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+include DocusignHelper
+helper_method :sign
 
   def create
     @user = User.new(user_params)
@@ -17,6 +19,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @documents = Document.all
+  end
+
+  def sign(user_id, document_id)
+    @document = Document.find(document_id)
+    @user = User.find(user_id)
+    docusign_post_requests(@user, @document)
   end
 
   private
