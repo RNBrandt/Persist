@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#index'
+
+
+  get '/success' => 'users#success'
 end
