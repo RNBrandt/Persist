@@ -14,7 +14,7 @@
  *= require_self
  */
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .btn-submit {
   font-family: 'Sanchez', serif;
 }
 
@@ -26,4 +26,11 @@ h1, h2, h3, h4, h5 {
 
 .navbar {
   background-color: #90DDB7;
+}
+
+.btn-submit {
+  background-color: #90DDB7; 
+}
+.btn-submit:hover {
+  background-color: #A6F4DB; 
 }
