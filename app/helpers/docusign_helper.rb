@@ -2,29 +2,50 @@ module DocusignHelper
   require "base64"
   require 'net/http'
 
-  def create_payload(user, document)
-    doc = File.open("Mutual_NDA.pdf", 'r') { |fp| fp.read }
-    @encoded = Base64.encode64(doc)
-    create_vars(user, document)
-    post_data
-    # uri = URI 'https://demo.docusign.net/restapi/v2'
-    # req = Net::HTTP::Post.new(uri.path)
-    # req.set_form_data()
+  def docusign_post_requests(user, document)
+    response = envelope_request(user, document)
+    envelope_id = response.parsed_response["envelopeId"]
+    response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
+    # response.parsed_response["url"]
   end
 
   private
 
+  def envelope_request(user, document)
+    doc = File.open("Mutual_NDA.pdf", 'r') { |fp| fp.read }
+    @encoded = Base64.encode64(doc)
+    create_vars(user, document)
+    HTTParty.post('https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes', headers: headers, body: post_data[:body].to_json)
+  end
+
+  def headers
+    username = ENV['DOCUSIGN_USERNAME']
+    password = ENV['DOCUSIGN_PASSWORD']
+    integratorkey = ENV['DOCUSIGN_API']
+    headers = {
+      "Content-Type" => "application/json",
+      "Accept" => "application/json",
+      'X-DocuSign-Authentication' => %{{
+      "Username" : "#{username}",
+      "Password" : "#{password}",
+      "IntegratorKey" : "#{integratorkey}"
+      }}
+    }
+  end
+
+  def data_body
+    data_body = {
+        "authenticationMethod": "email",
+        "clientUserId": @user_id,
+        "email": @user_email,
+        "recipientId": @user_id,
+        "returnUrl": "http://httpbin.org/get",
+        "username": @user_name
+    }
+  end
+
   def post_data
     post_data = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-DocuSign-Authentication': "{
-           Username: #{@username},
-           Password: #{@password},
-           IntegratorKey: #{@api_key}
-        }"
-      },
       body:{
       "documents": [
         {
@@ -98,27 +119,5 @@ module DocusignHelper
     @recipient_id = "1"#user.try.id || "1"
     @document_id = "300"#document.try.id || "300"
     @document_name = "noo" #document.try.title || "noooo"
-  end
-
-  def get_user_info(user)
-    #sample api call
-    username = ENV['DOCUSIGN_USERNAME']
-    password = ENV['DOCUSIGN_PASSWORD']
-    integratorkey = ENV['DOCUSIGN_API']
-
-
-
-
-    @response = HTTParty.get('https://demo.docusign.net/restapi/v2/login_information',
-            headers: {
-            "Content-Type" => "application/json",
-            "Accept" => "application/json",
-            'X-DocuSign-Authentication' => %{{
-            "Username" : "#{username}",
-            "Password" : "#{password}",
-            "IntegratorKey" : "#{integratorkey}"
-            }}
-            })
-
   end
 end
