@@ -11,6 +11,9 @@ gem 'rails', '~> 5.0.1'
 #use postgresql for production db
 gem 'pg'
 
+# Use paperclip to upload documents
+# gem 'paperclip',  :git => "git://github.com/thoughtbot/paperclip.git"
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -33,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#use figaro to organize environment variables
+gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
