@@ -29,7 +29,8 @@ h1, h2, h3, h4, h5, .btn-submit {
 }
 
 .btn-submit {
-  background-color: #90DDB7; 
+  background-color: #90DDB7;
+  color: #292b2c;
 }
 .btn-submit:hover {
   background-color: #A6F4DB; 

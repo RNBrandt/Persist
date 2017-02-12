@@ -7,11 +7,12 @@
 </div>
 
 <h3>Recommended</h3>
-<div class="signed-doc">
+
   <% @documents.each do | document |%>
-    <%=link_to 'sign petition', sign_users_path("user" =>@user.id, "document" => document.id)%><%= document.name%></a>
+    <div class="unsigned-doc">
+    <%=link_to document.name, sign_users_path("user" =>@user.id, "document" => document.id)%></a>
+    </div>
   <% end  %>
-</div>
 
 <h3 class="mt-2">Signed Documents</h3>
   <div class="signed-doc">
