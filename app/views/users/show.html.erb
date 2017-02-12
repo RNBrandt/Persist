@@ -1,0 +1,12 @@
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+
+<p><%= @user.address %><br />
+<%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></p>
+
+<h2>Divisions</h2>
+
+<!-- LOGIC -->
+<% divisions = @user.civic_json['divisions'] %>
+<% divisions.each do |key, value| %>
+  <div class="division"> <%= value['name'] %></div>
+<% end %>
