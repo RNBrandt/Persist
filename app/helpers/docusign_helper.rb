@@ -1,9 +1,12 @@
 module DocusignHelper
-
+  require "base64"
   require 'net/http'
 
   def create_payload(user, document)
+    doc = File.open("Mutual_NDA.pdf", 'r') { |fp| fp.read }
+    @encoded = Base64.encode64(doc)
     create_vars(user, document)
+    post_data
     # uri = URI 'https://demo.docusign.net/restapi/v2'
     # req = Net::HTTP::Post.new(uri.path)
     # req.set_form_data()
@@ -16,16 +19,16 @@ module DocusignHelper
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'X-DocuSign-Authentication': {
-           Username: @username,
-           Password: @password,
-           IntegratorKey: @api_key
-        }
+        'X-DocuSign-Authentication': "{
+           Username: #{@username},
+           Password: #{@password},
+           IntegratorKey: #{@api_key}
+        }"
       },
       body:{
       "documents": [
         {
-          "documentBase64": "FILE1_BASE64",
+          "documentBase64": @encoded,
           "documentId": "1",
           "fileExtension": @file_extension,
           "name": "#{@document_name}.#{@file_extension}"
@@ -79,20 +82,21 @@ module DocusignHelper
         ]
       },
       "status": "sent"
+      }
     }
   end
 
   def create_vars(user, document)
-    @api_key = ENV[:DOCUSIGN_API]
-    @username = ENV[:DOCUSIGN_USERNAME]
-    @password = ENV[:DOCUSIGN_PASSWORD]
-    @account_id = ENV[:DOCUSIGN_ACCOUNT_ID]
+    @api_key = ENV['DOCUSIGN_API']
+    @username =  ENV['DOCUSIGN_USERNAME']
+    @password = ENV['DOCUSIGN_PASSWORD']
+    @account_id = ENV['DOCUSIGN_ACCOUNT_ID']
     @file_extension = ".pdf"
     @user_id = user.id
     @user_email = user.email
     @user_name = "#{user.first_name }"+ "#{user.last_name}"
-    @recipient_id = user.try.id || "1"
-    @document_id = document.try.id || "300"
-    @document_name = document.try.title || "noooo"
+    @recipient_id = "1"#user.try.id || "1"
+    @document_id = "300"#document.try.id || "300"
+    @document_name = "noo" #document.try.title || "noooo"
   end
 end
