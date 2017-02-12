@@ -8,7 +8,13 @@ class DocumentsController < ApplicationController
   end
 
   def create
+    #where we upload and base64 the doc
     @document = Document.new(document_params)
+  end
+
+  def sign
+    @document = Document.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def show
