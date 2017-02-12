@@ -6,7 +6,7 @@ module DocusignHelper
     response = envelope_request(user, document)
     envelope_id = response.parsed_response["envelopeId"]
     response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
-    # response.parsed_response["url"]
+    response.parsed_response["url"]
   end
 
   private
