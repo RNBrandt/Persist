@@ -47,3 +47,14 @@ p.division-name > a:hover {
 .signed-doc:hover {
   border-left: 15px solid #A6F4DB;
 }
+
+.unsigned-doc {
+  font-size: 1.2em;
+  border-left: 5px solid #C2EAA8;
+  margin: 10px;
+  padding: 10px;
+}
+
+.unsigned-doc:hover {
+  border-left: 15px solid #90DDB7;
+}
