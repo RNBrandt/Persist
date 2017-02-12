@@ -99,4 +99,26 @@ module DocusignHelper
     @document_id = "300"#document.try.id || "300"
     @document_name = "noo" #document.try.title || "noooo"
   end
+
+  def get_user_info(user)
+    #sample api call
+    username = ENV['DOCUSIGN_USERNAME']
+    password = ENV['DOCUSIGN_PASSWORD']
+    integratorkey = ENV['DOCUSIGN_API']
+
+
+
+
+    @response = HTTParty.get('https://demo.docusign.net/restapi/v2/login_information',
+            headers: {
+            "Content-Type" => "application/json",
+            "Accept" => "application/json",
+            'X-DocuSign-Authentication' => %{{
+            "Username" : "#{username}",
+            "Password" : "#{password}",
+            "IntegratorKey" : "#{integratorkey}"
+            }}
+            })
+
+  end
 end
