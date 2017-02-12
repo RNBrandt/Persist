@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+h1, h2, h3, h4, h5, .btn-submit {
+  font-family: 'Sanchez', serif;
+}
+
+.navbar-brand {
+  font-family: 'Sanchez', serif;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.navbar {
+  background-color: #90DDB7;
+}
+
+.btn-submit {
+  background-color: #90DDB7; 
+}
+.btn-submit:hover {
+  background-color: #A6F4DB; 
+}
