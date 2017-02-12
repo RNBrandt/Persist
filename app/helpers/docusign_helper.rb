@@ -6,14 +6,13 @@ module DocusignHelper
     response = envelope_request(user, document)
     envelope_id = response.parsed_response["envelopeId"]
     response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
-    p response
-    response.parsed_response["url"]
+    # response.parsed_response["url"]
   end
 
   private
 
   def envelope_request(user, document)
-    doc = File.open("Mutual_NDA.pdf", 'r') { |fp| fp.read }
+    doc = File.open("fund_public_arts.pdf", 'r') { |fp| fp.read }
     @encoded = Base64.encode64(doc)
     create_vars(user, document)
     HTTParty.post('https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes', headers: headers, body: post_data[:body].to_json)
@@ -117,8 +116,8 @@ module DocusignHelper
     @user_id = user.id
     @user_email = user.email
     @user_name = "#{user.first_name }"+ "#{user.last_name}"
-    @recipient_id = "1"#user.try.id || "1"
-    @document_id = "300"#document.try.id || "300"
-    @document_name = "noo" #document.try.title || "noooo"
+    @recipient_id = "1" #user.try.id
+    @document_id = "300" #document.try.id
+    @document_name = "Fund the Public Arts" #document.try.title
   end
 end
