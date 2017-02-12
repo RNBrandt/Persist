@@ -14,9 +14,11 @@
   </head>
 
   <body>
+    <% unless controller_name == "pages" %>
     <nav class="navbar navbar-light mb-2">
       <a class="navbar-brand" href="#">Persist</a>
     </nav>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>
