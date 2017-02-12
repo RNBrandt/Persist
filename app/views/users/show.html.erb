@@ -8,7 +8,10 @@
 
 <h3>Recommended</h3>
 <div class="signed-doc">
-  <%= Document.find(1).name %>
+  <% @documents.each do | document |%>
+    <%= link_to sign(@user.id, document.id) %>
+    <   >
+  <% end  %>
 </div>
 
 <h3 class="mt-2">Signed Documents</h3>
