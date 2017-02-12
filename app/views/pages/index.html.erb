@@ -1,6 +1,8 @@
 <div class="jumbotron landing">
   <%= image_tag("persist-logo.png", class: "img-fluid", alt: "Persist logo") %><h1 class="display-3">Persist</h1>
-  <p class="lead">Words, snappy, snappy words go here</p>
+  <p class="lead">Targeted civic engagement</p>
+  <%= link_to "Register", new_user_path , class: 'btn btn-outline-primary' %>
+  <%= link_to "Log In", user_path(User.find(1)) , class: 'btn btn-outline-primary' %>
 </div>
 
 <h3 class="display-4">For Constituents</h3>
@@ -10,13 +12,13 @@
   <div class="col-md-4">
     <%= image_tag("signature.png", class: 'img-fluid') %>
     <h5>Sign</h5>
-    <p>Bleep blorp</p>
+    <p>Use Docusign eSignature to</p>
   </div>
   
    <div class="col-md-4">
     <%= image_tag("map.png", class: 'img-fluid', width: '300px') %>
   <h5>Find stuff that matters</h5>
-  <p>Bleep blorp</p>
+  <p>Persist helps you locate petitions and initiatives by your district</p>
   </div>
 
   <div class="col-md-4">
