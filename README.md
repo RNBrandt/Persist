@@ -3,7 +3,7 @@
 
 # Persist
 
-In a time of increased civic engagement Persist aims to be your one-stop-shop for sharing the positive change you'd like to see in the world with those who've been elected to represent your interests.  It is time let those we've put in power know how we feel.
+In a time of increased civic engagement Persist aims to be your one-stop-shop for sharing the positive change you'd like to see in the world with those who've been elected to represent your interests.  It is time to let those we've put in power know how we feel.
 
 Show politicians from all levels from citywide all the way up to the president what you want, and the way you'd like them to vote.
 
