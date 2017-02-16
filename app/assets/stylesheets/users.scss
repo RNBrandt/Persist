@@ -14,7 +14,11 @@
   font-size: 1.2em;
   display: inline-block
 }
-
+.politician-name {
+  font-family: 'Sanchez', serif;
+  font-size: 1em;
+  display: block
+}
 p.division-name:after {
   content: '';
   position: absolute;
