@@ -28,6 +28,9 @@
 <% divisions.each do |key, value| %>
   <div class="division col-md-3">
   <p class="division-name align-middle"><a href="#"><%= value['name'] %></a></p>
+  <% value['officeIndices'].to_a.each do |politician| %>
+    <p class="politician-name align-middle"><%= @user.civic_json['officials'][politician]['name'] %></p>
+  <% end %>
   </div>
 <% end %>
 </div>
