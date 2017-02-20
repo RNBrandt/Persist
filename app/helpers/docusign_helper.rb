@@ -3,19 +3,21 @@ module DocusignHelper
   require 'net/http'
 
   def docusign_post_requests(user, document)
+    dev_account_id = ENV['DOCUSIGN_DEVELOPER_ACCOUNT_ID']
     response = envelope_request(user, document)
     envelope_id = response.parsed_response["envelopeId"]
-    response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
+    response = HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/#{dev_account_id}/envelopes/#{envelope_id}/views/recipient", headers: headers, body: data_body.to_json)
     response.parsed_response["url"]
   end
 
   private
 
   def envelope_request(user, document)
+    dev_account_id = ENV['DOCUSIGN_DEVELOPER_ACCOUNT_ID']
     doc = File.open("fund_public_arts.pdf", 'r') { |fp| fp.read }
     @encoded = Base64.encode64(doc)
     create_vars(user, document)
-    HTTParty.post('https://demo.docusign.net/restapi/v2/accounts/2480645/envelopes', headers: headers, body: post_data[:body].to_json)
+    HTTParty.post("https://demo.docusign.net/restapi/v2/accounts/#{dev_account_id}/envelopes", headers: headers, body: post_data[:body].to_json)
   end
 
   def headers
