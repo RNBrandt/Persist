@@ -4,6 +4,8 @@ helper_method :sign
 
   def create
     @user = User.new(user_params)
+    @user.save
+    redirect_to user_path(@user)
   end
 
   def new
@@ -30,7 +32,8 @@ helper_method :sign
       :last_name,
       :zip_code,
       :city,
-      :state
+      :state,
+      :email
       )
   end
 
